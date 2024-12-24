@@ -1,0 +1,6 @@
+setInterval(function, time in ms)
+setTimeout(function, time in ms)
+
+fs.readFile(filePath, encoding *mostly utf-8*, function(err, data))
+fs.writeFile(filePath, Content, encoding, func)
+fs.appendFile(filePath, Content, encoding, func) 
