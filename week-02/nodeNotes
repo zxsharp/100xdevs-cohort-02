@@ -1,0 +1,7 @@
+forEach(func)  runs for each element even if condition is met
+find()  finds the element with condition
+findIndex()  finds index with condition
+
+splice(index, 1)  removes 1 element at index
+filter()
+map()
