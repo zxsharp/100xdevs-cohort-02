@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="background-color: black;">
+    <div style="display: flex;
+                justify-content: center;
+                padding-top: 100px;
+                padding-bottom: 30px;
+                font-size: 100px;
+                color: aliceblue;
+                font-family: monospace;"
+         id="clock">
+         00:00:00.00
+    </div>
+    
+    <div style="display: flex;
+                justify-content: space-around;">
+                
+            <button id="set" onClick="set()" style="font-size:30px;
+                                    font-family: monospace;
+                                    height: 40px;
+                                    width: 100px;
+                                    border-radius: 7px;
+                                    border-width: 2px;
+                                    color:azure;
+                                    border-color: rgb(118, 215, 228);
+                                    box-shadow: -4px 4px 4px rgb(169, 162, 207);
+                                    background-color:rgb(46, 146, 62);">Start</button>
+            
+            <button id="reset" onClick="reset()" style="font-size:30px;
+                                    font-family: monospace;
+                                    height: 40px;
+                                    width: 100px;
+                                    border-radius: 7px;
+                                    border-width: 2px;
+                                    color:azure;
+                                    border-color: rgb(118, 215, 228);
+                                    box-shadow: 4px 4px 4px rgb(169, 162, 207);
+                                    background-color:rgb(23, 52, 63)">Reset</button>                            
+    </div> 
+
+</body>
+
+<script>
+
+    let interval;
+    let time=0;
+    let running=0;
+
+    function displayClock(){
+        let hrs = Math.floor(time/3600000).toString().padStart(2, '0');     
+        let mins = Math.floor((time/60000)%60).toString().padStart(2, '0');
+        let secs = Math.floor((time/1000)%60).toString().padStart(2, '0');
+        let ms = Math.floor(time%1000).toString().padStart(3, '0').slice(0, -1);
+
+        document.getElementById('clock').innerHTML = `${hrs}:${mins}:${secs}.${ms}`;
+    }
+
+    function set(){
+
+        if(running === 0){
+            const element = document.getElementById('set');
+            element.innerHTML = 'Stop';
+            element.style.cssText += `
+                background-color: rgb(121, 5, 5);
+            `;
+
+            // start clock (incrementing time every 10 ms)
+            interval = setInterval(function(){
+                time += 10;
+                displayClock(time);
+            }, 10)
+
+            // clock is running
+            running = 1;
+        }
+        
+        else{
+            // stop clock
+            clearInterval(interval);
+
+            const element = document.getElementById('set');
+            element.innerHTML = 'Start';
+            element.style.cssText += `
+                background-color: rgb(46, 146, 62)
+            `;
+
+            // clock is stopped
+            running = 0;
+        }
+    }
+
+    function reset(){
+        clearInterval(interval);
+        time=0;
+
+        const element = document.getElementById('set');
+        element.innerHTML = 'Start';
+        element.style.cssText += `
+            background-color: rgb(46, 146, 62)
+        `;
+        document.getElementById('clock').innerHTML = '00:00:00.00';
+        
+        running = 0;
+    }
+
+</script>
+
+
+</html>

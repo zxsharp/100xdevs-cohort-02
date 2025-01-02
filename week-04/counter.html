@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="display: flex;
+                justify-content: center;
+                padding-top: 200px;
+                padding-bottom: 50px;">
+
+            <button id='counter' onClick="increaseCounter()" style="width: 230px;
+                                                                    height: 60px;
+                                                                    color: white;
+                                                                    background-color: rgb(9, 44, 75);
+                                                                    font-size: 30px;
+                                                                    border-radius: 10px;
+                                                                    box-shadow: 4px 4px 4px grey;
+                                                                    border-color: aliceblue;" >Counter: 0</button>
+    </div>                    
+    
+    <div style="display: flex;
+                justify-content: center;">
+                
+                <button onClick="reset()" id="resetter" style="height: 45px;
+                                                                width: 120px;
+                                                                color: white;
+                                                                background-color: rgb(97, 2, 2);
+                                                                font-size: 25px;
+                                                                border-radius: 5px;
+                                                                box-shadow: 2px 2px 2px grey;
+                                                                border-color: aliceblue;">Reset</button>  
+                                                            
+    </div>
+</body>
+<script>
+    let count=0
+    function increaseCounter(){
+        count++;
+        document.getElementById('counter').innerHTML = `Counter: ${count}`;
+    }
+    function reset(){
+        count=0;
+        document.getElementById('counter').innerHTML = `Counter: ${count}`;
+    }
+</script>
+</html>
